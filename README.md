@@ -33,3 +33,16 @@ dataset/
 2. 이미지 크기 불일치
 - 데이터셋 내 이미지 크기가 통일되지 않아 모델 학습을 위해 `resize` 필요.
 - 다만, `resize` 시점을 정확하게 알지 못함.
+
+### 2025-05-07
+- 결국 만들어야할 것은
+    - `train_data` : `img`
+    - `train_label` : `img`들의 `label`(보통 `labelencoding`된 상태로 저장)
+    - `test_data` : `test_img`
+    - `train_classes` : `idx : 'label'`의 형태로 저장된 `dict`
+
+### 문제점
+- 이미지파일 이름에 `label`이 있는 형식이라 이미지파일에서 `.split`을 사용해 `label`을 추출하는 중에 이미지파일 이름이 이런 형식으로 되어있지 않아 문제가 발생
+- 이 문제는 두개의 파일에서만 발생했기에 따로 `label`을 설정해주면서 해결함
+
+- `data_save` 완료
